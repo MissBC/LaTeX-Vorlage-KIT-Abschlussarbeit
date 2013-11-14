@@ -1,0 +1,92 @@
+\documentclass[%
+	BCOR12mm, % Bindekorrektur 12mm (geeignet für Lochung oder einfache Klebebindung)
+	tablecaptionabove %
+	]{scrbook}
+
+\usepackage[ngerman]{babel} % für deutsche Texte
+\usepackage[utf8]{inputenc} % UTF-8 Zeichen sind möglich
+\usepackage{amssymb,amsmath} % Matheumgebung
+
+\usepackage{natbib}
+
+\usepackage{siunitx} % Temperatur \SI{5}{\degreeCelsius}
+\usepackage{chemfig} % chemische Sturkturformeln darstellen http://www.suedraum.de/latex/stammtisch/strukturformeln.pdf
+
+%--------------------------------------------------------------------------------
+\begin{document}
+%--------------------------------------------------------------------------------
+%	DECKBLATT
+%--------------------------------------------------------------------------------
+\titlehead{\Large Karlsruher Institut für Technologie (KIT) \hfill Institut} % Universität, Institut, ...
+\subject{Abschlussarbeit} % Art der Arbeit (Bachelor-, Master-, Diplomarbeit, Dissertation)
+\title{Titel}
+\subtitle{Untertitel}
+\author{Autor} % mehrere Autoren mit \and trennen
+%\date{} Datum wird automatisch auf \today gesetzt - für anderes Datum in die {} schreiben
+\publishers{} % Aufgabensteller und Betreuer, getrennt mit \and
+% \thanks{Dank an \dots} % Fußnote
+\maketitle
+%--------------------------------------------------------------------------------
+%--------------------------------------------------------------------------------
+%	ERKLÄRUNG - INHALTSVERZEICHNIS - SYMBOLVERZEICHNIS
+%--------------------------------------------------------------------------------
+\frontmatter
+%--------------------------------------------------------------------------------
+\chapter{Erklärung} % (fold)
+\label{cha:erklaerung}
+
+% chapter erklärung (end)
+%--------------------------------------------------------------------------------
+\tableofcontents
+%--------------------------------------------------------------------------------
+\chapter{Symbolverzeichnis} % (fold)
+\label{cha:symbolverzeichnis}
+
+% chapter symbolverzeichnis (end)
+
+%--------------------------------------------------------------------------------
+%	INHALT
+%--------------------------------------------------------------------------------
+\mainmatter
+%--------------------------------------------------------------------------------
+\chapter{Einleitung} % (fold)
+\label{cha:einleitung}
+
+% chapter einleitung (end)
+%--------------------------------------------------------------------------------
+
+\chapter{Theoretische Grundlagen} % (fold)
+\label{cha:theoretische_grundlagen}
+\cite{pradipasena2007temperature}
+\citep{gaukel2004untersuchungen}
+\citet{young1957d}
+% chapter theoretische_grundlagen (end)
+%--------------------------------------------------------------------------------
+
+\chapter{Material und Methoden} % (fold)
+\label{cha:material_und_methoden}
+
+% chapter material_und_methoden (end)
+%--------------------------------------------------------------------------------
+
+\chapter{Ergebnisse und Diskussion} % (fold)
+\label{cha:ergebnisse_und_diskussion}
+
+% chapter ergebnisse_und_diskussion (end)
+%--------------------------------------------------------------------------------
+
+\chapter{Zusammenfassung und Ausblick} % (fold)
+\label{cha:zusammenfassung_und_ausblick}
+
+% chapter zusammen_und_ausblick (end)
+
+%--------------------------------------------------------------------------------
+%	LITERATURVERZEICHNIS - ANHANG
+%--------------------------------------------------------------------------------
+\bibliographystyle{alpha}
+\bibliography{../literatur}
+\appendix
+\listoffigures
+\listoftables
+%--------------------------------------------------------------------------------
+\end{document}
