@@ -1,16 +1,36 @@
 \documentclass[%
 	BCOR12mm, % Bindekorrektur 12mm (geeignet für Lochung oder einfache Klebebindung)
-	tablecaptionabove %
+	cleardoublepage=empty, % Vakatseiten ohne Kopf- und Fußzeile
+	tablecaptionabove, % Tabellenüberschriften, aber Bildunterschriften
+	toc=bib, % Literaturverzeichnis im Inhaltsverzeichnis aufführen
+	toc=listofnumbered, % Abbildungs- und Tabellenverzeichnis im Inhaltverzeichnis aufführen
+	listof=leveldown, % Abbildungs- und Tabellenverzeichnis Überschriften als Section statt Chapter
+	numbers=noendperiod % Kein abschließender Punkt bei Kapitel-Zählung
 	]{scrbook}
 
-\usepackage[ngerman]{babel} % für deutsche Texte
 \usepackage[utf8]{inputenc} % UTF-8 Zeichen sind möglich
+\usepackage[ngerman]{babel} % für deutsche Texte
 \usepackage{amssymb,amsmath} % Matheumgebung
 
 \usepackage{natbib}
 
 \usepackage{siunitx} % Temperatur \SI{5}{\degreeCelsius}
 \usepackage{chemfig} % chemische Sturkturformeln darstellen http://www.suedraum.de/latex/stammtisch/strukturformeln.pdf
+
+\usepackage{hyperref}
+
+%% ----------------------------------
+%% |  Style of appendix numbering   |
+%% ----------------------------------
+\renewcommand\appendix{\par
+	\addchap{\appendixname}
+	\setcounter{section}{0}% 
+	\setcounter{subsection}{0}% 
+	\setcounter{figure}{0}%
+	\renewcommand\thesection{\Alph{section}}% 
+	\renewcommand\thefigure{\Alph{section}.\arabic{figure}} 
+	\renewcommand\thetable{\Alph{section}.\arabic{table}}}
+%% --- End of appenix numbering style ---
 
 %--------------------------------------------------------------------------------
 \begin{document}
@@ -32,8 +52,8 @@
 %--------------------------------------------------------------------------------
 \frontmatter
 %--------------------------------------------------------------------------------
-\chapter{Erklärung} % (fold)
-\label{cha:erklaerung}
+% \chapter{Erklärung} % (fold)
+% \label{cha:erklaerung}
 
 % chapter erklärung (end)
 %--------------------------------------------------------------------------------
@@ -49,8 +69,8 @@
 %--------------------------------------------------------------------------------
 \mainmatter
 %--------------------------------------------------------------------------------
-\chapter{Einleitung} % (fold)
-\label{cha:einleitung}
+% \chapter{Einleitung} % (fold)
+% \label{cha:einleitung}
 
 % chapter einleitung (end)
 %--------------------------------------------------------------------------------
@@ -58,7 +78,11 @@
 \chapter{Theoretische Grundlagen} % (fold)
 \label{cha:theoretische_grundlagen}
 \cite{pradipasena2007temperature}
+
+% \autocite{pradipasena2007temperature}
+
 \citep{gaukel2004untersuchungen}
+
 \citet{young1957d}
 % chapter theoretische_grundlagen (end)
 %--------------------------------------------------------------------------------
@@ -83,10 +107,13 @@
 %--------------------------------------------------------------------------------
 %	LITERATURVERZEICHNIS - ANHANG
 %--------------------------------------------------------------------------------
-\bibliographystyle{alpha}
+\bibliographystyle{../chicago-de}
 \bibliography{../literatur}
+
 \appendix
+
 \listoffigures
+
 \listoftables
 %--------------------------------------------------------------------------------
 \end{document}
