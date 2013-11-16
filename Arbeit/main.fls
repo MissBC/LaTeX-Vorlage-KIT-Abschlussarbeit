@@ -1,4 +1,4 @@
-PWD /Users/mgaedtke/Documents/LaTeX/LaTeX-Vorlage-KIT-Abschlussarbeit/Arbeit
+PWD /Users/Cornelia/Documents/LaTex/Vorlagen/LaTeX-Vorlage-KIT-Abschlussarbeit/Arbeit
 INPUT /usr/local/texlive/2013/texmf.cnf
 INPUT /usr/local/texlive/2013/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2013/texmf-var/web2c/pdftex/pdflatex.fmt
@@ -239,8 +239,11 @@ INPUT /usr/local/texlive/2013/texmf-dist/tex/latex/hyperref/hpdftex.def
 INPUT /usr/local/texlive/2013/texmf-dist/tex/latex/hyperref/hpdftex.def
 INPUT /usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 INPUT /usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+INPUT /usr/local/texlive/2013/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybackgrounds.code.tex
 INPUT main.aux
 INPUT main.aux
+INPUT deckblatt.aux
+INPUT deckblatt.aux
 OUTPUT main.aux
 INPUT /usr/local/texlive/2013/texmf-dist/tex/latex/base/ts1enc.dfu
 INPUT /usr/local/texlive/2013/texmf-dist/tex/latex/base/ts1enc.dfu
@@ -295,6 +298,15 @@ INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/public/cm/cmss8.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/public/cm/cmtt8.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/public/cm/cmtt8.tfm
+OUTPUT deckblatt.aux
+INPUT deckblatt.tex
+INPUT deckblatt.tex
+INPUT ../logos/KITLogo_RGB.pdf
+INPUT ../logos/KITLogo_RGB.pdf
+INPUT ../logos/KITLogo_RGB.pdf
+INPUT ../logos/LVTLogo.pdf
+INPUT ../logos/LVTLogo.pdf
+INPUT ../logos/LVTLogo.pdf
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
@@ -332,6 +344,8 @@ INPUT main.lot
 INPUT main.lot
 OUTPUT main.lot
 INPUT main.aux
+INPUT deckblatt.aux
+INPUT deckblatt.aux
 INPUT ./main.out
 INPUT ./main.out
 INPUT /usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb

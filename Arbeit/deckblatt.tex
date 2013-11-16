@@ -1,0 +1,45 @@
+%!TEX root = /Users/Cornelia/Documents/LaTex/Vorlagen/LaTeX-Vorlage-KIT-Abschlussarbeit/Arbeit/main.tex
+
+%--------------------------------------------------------------------------------
+%	DECKBLATT
+%--------------------------------------------------------------------------------
+
+\definecolor{grau}{rgb}{0.85,0.85,0.85} %RGB: 217R 217G 217B
+
+
+
+\newcommand{\diameter}{5}
+\newcommand{\xone}{-20} % -30 wenn keine Bindung/Lochung vorgesehen ist
+\newcommand{\xtwo}{164}
+\newcommand{\yone}{28}
+\newcommand{\ytwo}{-251} % -259 wenn kein Text in die Fußzeile soll
+
+\begin{tikzpicture}[ 
+	show background rectangle, 
+	background rectangle/.style={fill=grau},
+	remember picture, 
+	overlay]
+	
+\fill[color=white](\xone mm, \yone mm)  -- (\xtwo mm, \yone mm) arc (90:0:\diameter mm)   -- (\xtwo mm + \diameter mm , \ytwo mm) 	-- (\xone mm + \diameter mm , \ytwo mm) arc (270:180:\diameter mm)	-- (\xone mm, \yone mm);
+
+\node[xshift=38.5mm,yshift=-17.5mm] at (current page.north west){
+	\includegraphics[width=33mm, height=15mm]{../logos/KITLogo_RGB.pdf}
+	};
+\node[xshift=-26.5mm,yshift=-17.5mm] at (current page.north east){
+	\includegraphics[height=15mm]{../logos/LVTLogo.pdf}
+	};		 
+\node [xshift=5mm,yshift=5mm] at (current page.center)[text width=\textwidth]
+	{\titlehead{\Large \center Karlsruher Institut für Technologie (KIT)} % Universität, Institut, ...
+	\subject{Abschlussarbeit} % Art der Arbeit (Bachelor-, Master-, Diplomarbeit, Dissertation)
+	\title{Titel}
+	\subtitle{Untertitel}
+	\author{Autor}
+	% \publishers{Aufgabensteller \\Betreuer}  % Aufgabensteller / Betreuer
+	%\date{} %Datum wird automatisch auf \today gesetzt - für anderes Datum in die {} schreiben
+	\maketitle };
+	
+\node [xshift=90mm,yshift=6.5mm] at (current page.south west)[text width=\textwidth]
+	{Karlsruher Institut für Technologie (KIT)};
+\node [xshift=42mm,yshift=6.5mm] at (current page.south east)[text width=\textwidth]
+	{www.kit.edu};
+\end{tikzpicture}
