@@ -1,4 +1,3 @@
-
 \documentclass[%
 	BCOR12mm, % Bindekorrektur 12mm (geeignet für Lochung oder einfache Klebebindung)
 	cleardoublepage=empty, % Vakatseiten ohne Kopf- und Fußzeile
@@ -11,18 +10,99 @@
 
 \usepackage[utf8]{inputenc} % UTF-8 Zeichen sind möglich
 \usepackage[ngerman]{babel} % für deutsche Texte
+\usepackage[ngerman]{translator}
 \usepackage{amssymb,amsmath} % Matheumgebung
 
 \usepackage{natbib}
 
-\usepackage{siunitx} % Temperatur \SI{5}{\degreeCelsius}
+\usepackage{pgfplots}
+\usepackage{tikz} % Deckblattgestaltung
+\usetikzlibrary{backgrounds}
+\usepackage{color}
+
+\usepackage{booktabs}
+\usepackage[
+	table-parse-only,
+	detect-weight = true,
+	decimalsymbol = comma,
+	list-units = single,
+	range-units = single]{siunitx} % Temperatur \SI{5}{\degreeCelsius}
+	\SendSettingsToPgf
+\usepackage{mhchem}
 \usepackage{chemfig} % chemische Sturkturformeln darstellen http://www.suedraum.de/latex/stammtisch/strukturformeln.pdf
 
 \usepackage{hyperref}
 
-\usepackage{tikz} % Deckblattgestaltung
-\usetikzlibrary{backgrounds}
-\usepackage{color}
+\definecolor{kit-green100}{cmyk}{1,0,.6,0}
+\definecolor{kit-green70}{cmyk}{.7,0,.42,0}
+\definecolor{kit-green50}{cmyk}{.5,0,.3,0}
+\definecolor{kit-green30}{cmyk}{.3,0,.18,0}
+\definecolor{kit-green15}{cmyk}{.15,0,.09,0}
+
+\definecolor{kit-blue100}{cmyk}{1,.5,0,0}
+\definecolor{kit-blue70}{cmyk}{.56,.53,0,0}
+\definecolor{kit-blue50}{cmyk}{.4,.25,0,0}
+\definecolor{kit-blue30}{cmyk}{.24,.15,0,0}
+\definecolor{kit-blue15}{cmyk}{.12,.075,0,0}
+
+\definecolor{kit-yellow100}{cmyk}{0,.05,1,0}
+\definecolor{kit-yellow70}{cmyk}{0,.035,.7,0}
+\definecolor{kit-yellow50}{cmyk}{0,.025,.5,0}
+\definecolor{kit-yellow30}{cmyk}{0,.015,.3,0}
+\definecolor{kit-yellow15}{cmyk}{0,.0075,.15,0}
+
+\definecolor{kit-orange100}{cmyk}{0,.45,1,0}
+\definecolor{kit-orange70}{cmyk}{0,.315,.7,0}
+\definecolor{kit-orange50}{cmyk}{0,.225,.5,0}
+\definecolor{kit-orange30}{cmyk}{0,.135,.3,0}
+\definecolor{kit-orange15}{cmyk}{0,.0675,.15,0}
+
+\definecolor{kit-red100}{cmyk}{.25,1,1,0}
+\definecolor{kit-red70}{cmyk}{.175,.7,.7,0}
+\definecolor{kit-red50}{cmyk}{.125,.5,.5,0}
+\definecolor{kit-red30}{cmyk}{.075,.3,.3,0}
+\definecolor{kit-red15}{cmyk}{.0375,.15,.15,0}
+
+\newcommand{\schwamm}[3]{\ce{#1} \num{0,#2} \SI{#3}{}}
+
+\newcommand{\figuremessurements}[3]{
+\begin{figure}[htbp]
+\begin{center}
+	\graphicmessurements{#1}{#2}{#3}
+	\caption[Feuchter Druckverlust des Schwamms \schwamm{#1}{#2}{#3} über der Gasgeschwindigkeit, doppellogarithmisch aufgetragen.]{Feuchter Druckverlust des Schwamms \schwamm{#1}{#2}{#3} über der Gasgeschwindigkeit, doppellogarithmisch aufgetragen. Stapelhöhe der Packung ist \SI{200}{\milli\m}. Verbindungslinien dienen ausschließlich der optischen Führung.}
+	\label{fig:#1#2#3}
+\end{center}
+\end{figure}
+}
+
+\newcommand{\graphicmessurements}[3]{
+	\begin{tikzpicture}
+		\begin{loglogaxis}[
+			log ticks with fixed point,
+			grid=minor,
+			xmin=0.1,ymin=10,
+			xmax=1.3,ymax=7000,
+		    xlabel=$u_g \text{ in } \si{\m\per\s}$,
+		    ylabel=$\frac{\Delta p}{L} \text{ in } \si{\Pa\per\m}$,
+			legend style={font=\small},
+			legend pos=outer north east,
+			scatter/classes={
+				a={kit-blue100},
+				b={kit-green100},
+				c={kit-yellow100},
+				d={kit-orange100},
+				e={kit-red100}}]
+			\addplot[
+				scatter,
+				scatter src=explicit symbolic,
+				mark=*,
+				smooth]
+				table[header=false,x index=1,y index=0,meta index=3]{../data/#1_#2_#3.txt};
+			\node[anchor=north west,draw=gray,fill=white] at (rel axis cs:0.05,0.95) {\schwamm{#1}{#2}{#3}};
+			\legend{$u_l \approx \SI{5,7}{\milli\m\per\s}$,$u_l \approx \SI{4,2}{\milli\m\per\s}$,$u_l \approx \SI{2,8}{\milli\m\per\s}$,$u_l \approx \SI{1,4}{\milli\m\per\s}$,trocken}
+		\end{loglogaxis}
+	\end{tikzpicture}
+}
 
 %% ----------------------------------
 %% |  Style of appendix numbering   |
@@ -58,9 +138,10 @@
 
 Ich versichere hiermit wahrheitsgemäß, die Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt, die wörtlich oder inhaltlich übernommenen Stellen als solche kenntlich gemacht und die Satzung des Karlsruher Instituts für Technologie (KIT) zur Sicherung guter wissenschaftlicher Praxis in der jeweils gültigen Fassung beachtet zu haben.
 
-\vspace*{1cm}
-\hspace*{4cm} Karlsruhe, den \date{\today} \hspace*{0.5cm}\hrulefill \\
-\hspace*{10.5cm} \author{}\\
+\bigskip
+\bigskip
+\hspace*{2cm} Karlsruhe, den \date{\today} \hspace*{0.5cm}\hrulefill \\
+\hspace*{9.5cm} \author{Max Mustermann}\\
 
 % chapter erklärung (end)
 %--------------------------------------------------------------------------------
@@ -79,7 +160,29 @@ Ich versichere hiermit wahrheitsgemäß, die Arbeit selbstständig verfasst und 
 \chapter{Einleitung} % (fold)
 \label{cha:einleitung}
 
-Damit Ihr indess erkennt, woher dieser ganze Irrthum gekommen ist, und weshalb man die Lust anklagt und den Schmerz lobet, so will ich Euch Alles eröffnen und auseinander setzen, was jener Begründer der Wahrheit und gleichsam Baumeister des glücklichen Lebens selbst darüber gesagt hat. Niemand, sagt er, verschmähe, oder hasse, oder fliehe die Lust als solche, sondern weil grosse Schmerzen ihr folgen, wenn man nicht mit Vernunft ihr nachzugehen verstehe. Ebenso werde der Schmerz als solcher von Niemand geliebt, gesucht und verlangt, sondern weil mitunter solche Zeiten eintreten, dass man mittelst Arbeiten und Schmerzen eine grosse Lust sich zu verschaften suchen müsse. Um hier gleich bei dem Einfachsten stehen zu bleiben, so würde Niemand von uns anstrengende körperliche Uebungen vornehmen, wenn er nicht einen Vortheil davon erwartete. Wer dürfte aber wohl Den tadeln, der nach einer Lust verlangt, welcher keine Unannehmlichkeit folgt, oder der einem Schmerze ausweicht, aus dem keine Lust hervorgeht?
+Damit Ihr indess erkennt, woher dieser ganze Irrthum gekommen ist, und weshalb man die Lust anklagt und den Schmerz lobet, so will ich Euch Alles eröffnen und auseinander setzen, was jener Begründer der Wahrheit und gleichsam Baumeister des glücklichen Lebens selbst darüber gesagt hat. Niemand, sagt er, verschmähe, oder hasse, oder fliehe die Lust als solche, sondern weil grosse Schmerzen ihr folgen, wenn man nicht mit Vernunft ihr nachzugehen verstehe. Ebenso werde der Schmerz als solcher von Niemand geliebt, gesucht und verlangt, sondern weil mitunter solche Zeiten eintreten, dass man mittelst Arbeiten und Schmerzen eine grosse Lust sich zu verschaften suchen müsse. Um hier gleich bei dem Einfachsten stehen zu bleiben, so würde Niemand von uns anstrengende körperliche Uebungen vornehmen, wenn er nicht einen Vortheil davon erwartete. Wer dürfte aber wohl Den tadeln, der nach einer Lust verlangt, welcher keine Unannehmlichkeit folgt, oder der einem Schmerze ausweicht, aus dem keine Lust hervorgeht? \SIlist{1;2;3}{\metre} \\ \SIrange{1}{10}{\degreeCelsius}
+
+\begin{table}[htbp]
+	\caption{Eingesetzte Schwämme anhand ihres Materials, ihrer Porosität, Porenzahl, Höhe und spezifischen Oberfläche.}
+	\label{tab:schwaemme}
+		
+	\begin{center}
+	\begin{tabular}{ccSSSSS}
+		\toprule
+		\multicolumn{1}{c}{Hersteller} & \multicolumn{1}{c}{Material} & \multicolumn{1}{c}{$\psi_N$} & \multicolumn{1}{c}{Porenzahl} & \multicolumn{1}{c}{Höhe} & \multicolumn{1}{c}{$\psi^*$} & \multicolumn{1}{c}{${S_v}^*$}\\
+		& & & \multicolumn{1}{c}{in} & \multicolumn{1}{c}{in \si{\milli\m}} & & \multicolumn{1}{c}{in \si{\square\m\per\cubic\m}}\\
+		\midrule
+		Vesuvius & \ce{Al2O3} & 0.75 & 10 & 50 & 0.688 & 640\\
+		Vesuvius & \ce{Al2O3} & 0.85 & 10 & 50 & 0.812 & 630\\
+		Vesuvius & \ce{Al2O3} & 0.85 & 20 & 50 & 0.813 & 970\\
+		Vesuvius & \ce{Al2O3} & 0.85 & 30 & 50 & 0.793 & 1330\\
+		Erbicol & \ce{SiSiC} & 0.88 & 10 & 25 & 0.865 & 480\\
+		Letschert & \ce{Silikat} & 0.91 & 10 & 100 & 0.878 & 700\\
+		\bottomrule
+		\multicolumn{7}{l}{${}^*$ Werte aus \citet[][S. 155 und 157]{Grose2011Uber-keramische}}
+	\end{tabular}
+	\end{center}
+\end{table}
 
 Dagegen tadelt und hasst man mit Recht Den, welcher sich durch die Lockungen einer gegenwärtigen Lust erweichen und verführen lässt, ohne in seiner blinden Begierde zu sehen, welche Schmerzen und Unannehmlichkeiten seiner deshalb warten. Gleiche Schuld treffe Die, welche aus geistiger Schwäche, d.h. um der Arbeit und dem Schmerze zu entgehen, ihre Pflichten verabsäumen. Man kann hier leicht und schnell den richtigen Unterschied treffen; zu einer ruhigen Zeit, wo die Wahl der Entscheidung völlig frei ist und nichts hindert, das zu thun, was den Meisten gefällt, hat man jede Lust zu erfassen und jeden Schmerz abzuhalten; aber zu Zeiten trifft es sich in Folge von schuldigen Pflichten oder von sachlicher Noth, dass man die Lust zurückweisen und Beschwerden nicht von sich weisen darf. Deshalb trifft der Weise dann eine Auswahl, damit er durch Zurückweisung einer Lust dafür eine grössere erlange oder durch Uebernahme gewisser Schmerzen sich grössere erspare.
 
@@ -92,7 +195,9 @@ Dagegen tadelt und hasst man mit Recht Den, welcher sich durch die Lockungen ein
 \section{Lorem ipsum dolor} % (fold)
 \label{sec:lorem_ipsum_dolor}
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\figuremessurements{Al2O3}{85}{10}
 
 Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
 
