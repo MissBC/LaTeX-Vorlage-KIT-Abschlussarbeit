@@ -1,3 +1,4 @@
+
 \documentclass[%
 	BCOR12mm, % Bindekorrektur 12mm (geeignet für Lochung oder einfache Klebebindung)
 	cleardoublepage=empty, % Vakatseiten ohne Kopf- und Fußzeile
@@ -19,6 +20,10 @@
 
 \usepackage{hyperref}
 
+\usepackage{tikz} % Deckblattgestaltung
+\usetikzlibrary{backgrounds}
+\usepackage{color}
+
 %% ----------------------------------
 %% |  Style of appendix numbering   |
 %% ----------------------------------
@@ -37,15 +42,7 @@
 %--------------------------------------------------------------------------------
 %	DECKBLATT
 %--------------------------------------------------------------------------------
-\titlehead{\Large Karlsruher Institut für Technologie (KIT) \hfill Institut} % Universität, Institut, ...
-\subject{Abschlussarbeit} % Art der Arbeit (Bachelor-, Master-, Diplomarbeit, Dissertation)
-\title{Titel}
-\subtitle{Untertitel}
-\author{Autor} % mehrere Autoren mit \and trennen
-%\date{} Datum wird automatisch auf \today gesetzt - für anderes Datum in die {} schreiben
-\publishers{} % Aufgabensteller und Betreuer, getrennt mit \and
-% \thanks{Dank an \dots} % Fußnote
-\maketitle
+\include{deckblatt}
 %--------------------------------------------------------------------------------
 %--------------------------------------------------------------------------------
 %	ERKLÄRUNG - INHALTSVERZEICHNIS - SYMBOLVERZEICHNIS
