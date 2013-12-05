@@ -9,20 +9,20 @@
 	numbers=noendperiod % Kein abschließender Punkt bei Kapitel-Zählung
 	]{scrbook}
 
-\usepackage[utf8]{inputenc} % UTF-8 Zeichen sind möglich
+\usepackage[utf8]{inputenc} % UTF-8 Zeichen sind möglich (z.B. ö, ü, ä, ...)
 \usepackage[ngerman]{babel} % für deutsche Texte
-\usepackage{amssymb,amsmath} % Matheumgebung
 
-\usepackage{natbib}
-
-\usepackage{siunitx} % Temperatur \SI{5}{\degreeCelsius}
-\usepackage{chemfig} % chemische Sturkturformeln darstellen http://www.suedraum.de/latex/stammtisch/strukturformeln.pdf
-
-\usepackage{hyperref}
-
-\usepackage{tikz} % Deckblattgestaltung
+\usepackage{amssymb,amsmath} % Matheumgebung, siehe "mathe_in_latex.pdf"
+\usepackage{siunitx} % siehe "siunitx_Einheiten.pdf"
+\usepackage{mhchem} % chemische Summenformeln und Gleichungen siehe "Summenformeln und Chemie allgemein mit LaTeX.pdf"
+\usepackage{chemfig} % chemische Sturkturformeln darstellen siehe "Strukturformeln mit chemfig.pdf"
+\usepackage{pgfplots} % Diagramme pltten siehe "pgfplots_Diagramme.pdf"
+\usepackage{tikz} % zeichnen, Deckblattgestaltung, etc. siehe "tikzpgfmanual.pdf"
 \usetikzlibrary{backgrounds}
+\usepackage{hyperref}
 \usepackage{color}
+
+\usepackage{natbib} %Literaturverzeichnis
 
 %% ----------------------------------
 %% |  Style of appendix numbering   |
@@ -74,13 +74,55 @@
 
 \chapter{Theoretische Grundlagen} % (fold)
 \label{cha:theoretische_grundlagen}
-\cite{pradipasena2007temperature}
 
-% \autocite{pradipasena2007temperature}
+\section{Beispiele} % (fold)
+\label{sec:beispiele}
 
-\citep{gaukel2004untersuchungen}
+% section beispiele (end)
 
-\citet{young1957d}
+\subsection*{Ein Diagramm} % (fold)
+\label{sub:ein_diagramm}
+
+\begin{tikzpicture}
+	\begin{axis}[]
+		\addplot table[x index=0, y index=1]{Data/tabelle.txt};
+	\end{axis}
+\end{tikzpicture}
+% subsection ein_diagramm (end)
+   
+\subsection*{Chemische Formeln} % (fold)
+\label{sub:chemische_formeln}
+
+    \ce{H2O} \\
+    \ce{H2_{(aq)}}\\
+    \ce{$A$ ->[\ce{+H2O}] $B$}\\
+    \chemfig{H_3C-{{(CH_2)}_2}-CH_3}\\
+    \chemfig{H_3C-C(=[1]O)-[7]O^\ominus}\\
+    \chemname{\chemfig{*6(-(<[::-120]H)(*6(-(-[::-20]H_3C)%
+(-[::-70]H_3C)-O-(*6(-=(--[:30]-[:-30]-[:30]-%
+[:-30]CH_3)-=(-OH)-=))--(<:[::-120]H)-))--=(-CH_3)--)}}{THC}\\
+% subsection chemische_formeln (end)
+
+
+\subsection*{Eine Tabelle} % (fold)
+\label{sub:eine_tabelle}
+\begin{tabular}{l|rrr}
+	 & Spalte 1 & Spalte 2 & Spalte 3 \\
+	\hline
+	erste Zeile & 1 & 2 & 3 \\
+	zweite Zeile & 1 & 2 & 3 \\
+
+\end{tabular}
+% subsection eine_tabelle (end)
+
+\subsection*{Zitate} % (fold)
+\label{sub:zitate}
+
+
+Ich zitiere hier \cite{gaukel2004untersuchungen} und \cite{tscheuschner2004grundzuge}. Die Quellen findet man am Ende der Arbeit im Literaturverzeichnis. Erstellt mit BibDesk.
+% subsection zitate (end)
+
+
 % chapter theoretische_grundlagen (end)
 %--------------------------------------------------------------------------------
 
@@ -101,9 +143,9 @@
 
 % chapter zusammen_und_ausblick (end)
 
-%--------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 %	LITERATURVERZEICHNIS - ANHANG
-%--------------------------------------------------------------------------------
+%------------------------------------------------------------------------------
 \bibliographystyle{../chicago-de}
 \bibliography{../literatur}
 
