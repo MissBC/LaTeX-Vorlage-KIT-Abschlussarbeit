@@ -1,5 +1,8 @@
-\documentclass[%
-	BCOR12mm, % Bindekorrektur 12mm (geeignet für Lochung oder einfache Klebebindung)
+\documentclass[ %
+	DIV=15,
+	BCOR=14mm, % Bindekorrektur 12mm (geeignet für Lochung oder einfache Klebebindung)
+	parskip=half, % Absätze mit Abstand von einer halben Zeilenhöhe
+	headsepline, % Horizontale Linie zwischen Kopfzeile und Inhalt
 	cleardoublepage=empty, % Vakatseiten ohne Kopf- und Fußzeile
 	tablecaptionabove, % Tabellenüberschriften, aber Bildunterschriften
 	toc=bib, % Literaturverzeichnis im Inhaltsverzeichnis aufführen
@@ -9,21 +12,36 @@
 	]{scrbook}
 
 \usepackage[utf8]{inputenc} % UTF-8 Zeichen sind möglich
+\usepackage[T1]{fontenc} % utf8-Kompatible Schrifttypen (Type One) erlauben
+
+\usepackage[lf, minionint, loosequotes]{MinionPro}
+\usepackage[lf]{MyriadPro}
+\usepackage{courier}
+
+\setkomafont{caption}{\small\itshape}
+\setkomafont{captionlabel}{\normalfont\sffamily\bfseries}
+\setkomafont{pageheadfoot}{\normalfont}
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ohead{\pagemark}
+\ihead{\headmark}
+
 \usepackage[ngerman]{babel} % für deutsche Texte
 \usepackage[ngerman]{translator}
-\usepackage{amssymb,amsmath} % Matheumgebung
 
 \usepackage{natbib}
 
 \usepackage{pgfplots}
-\usepackage{tikz} % Deckblattgestaltung
+\usepackage{tikz}
 \usetikzlibrary{backgrounds}
 \usepackage{color}
 
 \usepackage{booktabs}
 \usepackage[
 	table-parse-only,
-	detect-weight = true,
+	detect-all,
 	decimalsymbol = comma,
 	list-units = single,
 	range-units = single]{siunitx} % Temperatur \SI{5}{\degreeCelsius}
@@ -199,7 +217,28 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 \figuremessurements{Al2O3}{85}{10}
 
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+
+Kurvenintegral (normale Anordnung der Grenzen):
+  \[
+    \int_C U = \int_a^b U \big(\vec{r}\,(t)\big)\,|\vec{r}\,'(t)|\,dt
+  \]
+  Arbeitsintegral (Verwendung von \verb|\limits|):
+  \[
+    \int\limits_C \vec{F} \cdot d\vec{r} 
+      =\int\limits_a^b \vec{F} \big(\vec{r}\,(t)\big)
+      \cdot \vec{r}\,'(t)\,dt
+  \]
+  Fluss durch eine Sphäre mit Radius $a$ (Mehrfachintegral jeweils mit Grenzen):
+  \[
+    \int_0^\pi \int_0^{2\pi} F_r a^2 \sin\vartheta \, d\varphi d\vartheta
+  \]
+  Satz von Green (Mehrfachintegrale über Bereiche mit \verb|\limits|):
+  \[
+    \iint\limits_S (U \operatorname{grad} W)\cdot d\vec{S} 
+    =\iiint\limits_V (\operatorname{grad} U\cdot 
+     \operatorname{grad} W +U\Delta W)\,dV
+  \]
 
 Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
 
@@ -212,9 +251,49 @@ Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie co
 \section{At Vero eos et accusam} % (fold)
 \label{sec:at_vero_eos_et_accusam}
 
-At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat. 
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
 
-Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus. 
+\begin{verbatim}
+import numpy as np
+ 
+def incmatrix(genl1,genl2):
+    m = len(genl1)
+    n = len(genl2)
+    M = None #to become the incidence matrix
+    VT = np.zeros((n*m,1), int)  #dummy variable
+ 
+    #compute the bitwise xor matrix
+    M1 = bitxormatrix(genl1)
+    M2 = np.triu(bitxormatrix(genl2),1) 
+ 
+    for i in range(m-1):
+        for j in range(i+1, m):
+            [r,c] = np.where(M2 == M1[i,j])
+            for k in range(len(r)):
+                VT[(i)*n + r[k]] = 1;
+                VT[(i)*n + c[k]] = 1;
+                VT[(j)*n + r[k]] = 1;
+                VT[(j)*n + c[k]] = 1;
+ 
+                if M is None:
+                    M = np.copy(VT)
+                else:
+                    M = np.concatenate((M, VT), 1)
+ 
+                VT = np.zeros((n*m,1), int)
+ 
+    return M
+\end{verbatim}
+
+Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus.
+
+\begin{equation}
+	\underbrace{\frac{\sin^{2}\vartheta}{\Theta_{lm}(\vartheta)}\left(\frac{\partial^{2}}{\partial\vartheta^{2}}+\frac{\cos\vartheta}{\sin\vartheta}\frac{\partial}{\partial\vartheta}\right)\Theta_{lm}(\vartheta)+\sin^{2}(\vartheta)(l(l+1))}_{m^{2}}=\underbrace{-\frac{1}{\Phi_{m}(\varphi)}\frac{\partial^{2}}{\partial\varphi^{2}}\Phi_{m}(\varphi)}_{m^{2}}
+\end{equation}
+
+\begin{equation}
+	P_l (x)\equiv\frac {1}{2^l}\sum_{k=0}^{\lfloor l/2\rfloor} (-1)^k \frac{(2l-2k)!}{k!(l-k)!(l-2k)!} x^{l-2k}
+\end{equation}
 
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
 

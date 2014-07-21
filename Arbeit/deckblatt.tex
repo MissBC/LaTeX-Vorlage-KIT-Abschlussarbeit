@@ -1,34 +1,29 @@
-%!TEX root = /Users/Cornelia/Documents/LaTex/Vorlagen/LaTeX-Vorlage-KIT-Abschlussarbeit/Arbeit/main.tex
-
 %--------------------------------------------------------------------------------
 %	DECKBLATT
 %--------------------------------------------------------------------------------
-
+\thispagestyle{empty}
 \definecolor{grau}{rgb}{0.85,0.85,0.85} %RGB: 217R 217G 217B
 
+\newcommand{\radius}{5}
+\newcommand{\xone}{-19} % -30 wenn keine Bindung/Lochung vorgesehen ist
+\newcommand{\xtwo}{169}
+\newcommand{\yone}{30}
+\newcommand{\ytwo}{-243} % -259 wenn kein Text in die Fußzeile soll
 
-
-\newcommand{\diameter}{5}
-\newcommand{\xone}{-20} % -30 wenn keine Bindung/Lochung vorgesehen ist
-\newcommand{\xtwo}{164}
-\newcommand{\yone}{28}
-\newcommand{\ytwo}{-251} % -259 wenn kein Text in die Fußzeile soll
-
-\begin{tikzpicture}[ 
-	show background rectangle, 
-	background rectangle/.style={fill=grau},
-	remember picture, 
-	overlay]
+\begin{tikzpicture}[remember picture,overlay]
 	
-\fill[color=white](\xone mm, \yone mm)  -- (\xtwo mm, \yone mm) arc (90:0:\diameter mm)   -- (\xtwo mm + \diameter mm , \ytwo mm) 	-- (\xone mm + \diameter mm , \ytwo mm) arc (270:180:\diameter mm)	-- (\xone mm, \yone mm);
+	\fill[color=grau] (current page.south east) rectangle (current page.north west);
+	% \draw[fill=white] ((current page.south east) - (5mm,5mm)) rectangle ((current page.north west) - (5mm,5mm));
+	
+	\fill[color=white](\xone mm, \yone mm) -- (\xtwo mm, \yone mm) arc (90:0:\radius mm) -- (\xtwo mm + \radius mm , \ytwo mm) -- (\xone mm + \radius mm , \ytwo mm) arc (270:180:\radius mm) -- (\xone mm, \yone mm);
 
-\node[xshift=38.5mm,yshift=-17.5mm] at (current page.north west){
+	\node[xshift=38.5mm,yshift=-17.5mm] at (current page.north west){
 	\includegraphics[width=33mm, height=15mm]{../logos/KITLogo_RGB.pdf}
 	};
-\node[xshift=-26.5mm,yshift=-17.5mm] at (current page.north east){
+	\node[xshift=-26.5mm,yshift=-17.5mm] at (current page.north east){
 	\includegraphics[height=15mm]{../logos/LVTLogo.pdf}
 	};		 
-\node [xshift=5mm,yshift=5mm] at (current page.center)[text width=\textwidth]
+	\node [xshift=5mm,yshift=5mm] at (current page.center)[text width=\textwidth]
 	{\titlehead{\Large \center Karlsruher Institut für Technologie (KIT)} % Universität, Institut, ...
 	\subject{Abschlussarbeit} % Art der Arbeit (Bachelor-, Master-, Diplomarbeit, Dissertation)
 	\title{Titel}
@@ -38,8 +33,8 @@
 	%\date{} %Datum wird automatisch auf \today gesetzt - für anderes Datum in die {} schreiben
 	\maketitle };
 	
-\node [xshift=90mm,yshift=6.5mm] at (current page.south west)[text width=\textwidth]
+	\node [xshift=90mm,yshift=6.5mm] at (current page.south west)[text width=\textwidth]
 	{Karlsruher Institut für Technologie (KIT)};
-\node [xshift=42mm,yshift=6.5mm] at (current page.south east)[text width=\textwidth]
+	\node [xshift=42mm,yshift=6.5mm] at (current page.south east)[text width=\textwidth]
 	{www.kit.edu};
 \end{tikzpicture}
