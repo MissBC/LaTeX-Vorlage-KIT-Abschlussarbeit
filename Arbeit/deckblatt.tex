@@ -5,7 +5,7 @@
 \definecolor{grau}{rgb}{0.85,0.85,0.85} %RGB: 217R 217G 217B
 
 \newcommand{\radius}{5}
-\newcommand{\xone}{-19} % -30 wenn keine Bindung/Lochung vorgesehen ist
+\newcommand{\xone}{-9} % -30 wenn keine Bindung/Lochung vorgesehen ist
 \newcommand{\xtwo}{169}
 \newcommand{\yone}{30}
 \newcommand{\ytwo}{-243} % -259 wenn kein Text in die Fußzeile soll
@@ -13,28 +13,21 @@
 \begin{tikzpicture}[remember picture,overlay]
 	
 	\fill[color=grau] (current page.south east) rectangle (current page.north west);
-	% \draw[fill=white] ((current page.south east) - (5mm,5mm)) rectangle ((current page.north west) - (5mm,5mm));
-	
-	\fill[color=white](\xone mm, \yone mm) -- (\xtwo mm, \yone mm) arc (90:0:\radius mm) -- (\xtwo mm + \radius mm , \ytwo mm) -- (\xone mm + \radius mm , \ytwo mm) arc (270:180:\radius mm) -- (\xone mm, \yone mm);
+	\fill[color=white] ($ (current page.north west) + (19mm,-5mm) $) -- ($ (current page.north east) - (10mm,5mm) $) arc (90:0:\radius mm) -- ($ (current page.south east) + (-5mm,13mm) $) -- ($ (current page.south west) + (24mm,13mm) $) arc (270:180:\radius mm) -- cycle;
 
-	\node[xshift=38.5mm,yshift=-17.5mm] at (current page.north west){
-	\includegraphics[width=33mm, height=15mm]{../logos/KITLogo_RGB.pdf}
-	};
-	\node[xshift=-26.5mm,yshift=-17.5mm] at (current page.north east){
-	\includegraphics[height=15mm]{../logos/LVTLogo.pdf}
-	};		 
-	\node [xshift=5mm,yshift=5mm] at (current page.center)[text width=\textwidth]
-	{\titlehead{\Large \center Karlsruher Institut für Technologie (KIT)} % Universität, Institut, ...
-	\subject{Abschlussarbeit} % Art der Arbeit (Bachelor-, Master-, Diplomarbeit, Dissertation)
-	\title{Titel}
-	\subtitle{Untertitel}
-	\author{Autor}
-	% \publishers{Aufgabensteller \\Betreuer}  % Aufgabensteller / Betreuer
-	%\date{} %Datum wird automatisch auf \today gesetzt - für anderes Datum in die {} schreiben
+	\node[anchor=north west] at ($ (current page.north west) + (24mm,-10mm) $){ \includegraphics[width=33mm, height=15mm]{../logos/KITLogo_RGB.pdf} };
+	\node[anchor=north east] at ($ (current page.north east) - (10mm,10mm) $){ \includegraphics[height=15mm]{../logos/LVTLogo.pdf} };
+	
+	\node[text width=0.9\textwidth] at ($ (current page.center) + (14mm,0mm) $){
+		\titlehead{\Large \center Karlsruher Institut für Technologie (KIT)} % Universität, Institut, ...
+		\subject{Abschlussarbeit} % Art der Arbeit (Bachelor-, Master-, Diplomarbeit, Dissertation)
+		\title{Titel}
+		\subtitle{Untertitel}
+		\author{Autor}
+		% \publishers{Aufgabensteller \\Betreuer}  % Aufgabensteller / Betreuer
+		%\date{} %Datum wird automatisch auf \today gesetzt - für anderes Datum in die {} schreiben
 	\maketitle };
 	
-	\node [xshift=90mm,yshift=6.5mm] at (current page.south west)[text width=\textwidth]
-	{Karlsruher Institut für Technologie (KIT)};
-	\node [xshift=42mm,yshift=6.5mm] at (current page.south east)[text width=\textwidth]
-	{www.kit.edu};
+	\node[anchor=base west] at ($ (current page.south west) + (24mm,7mm) $) {Karlsruher Institut für Technologie (KIT)};
+	\node[anchor=base east] at ($ (current page.south east) + (-10mm,7mm) $) {www.kit.edu};
 \end{tikzpicture}
