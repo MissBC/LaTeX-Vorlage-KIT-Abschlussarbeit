@@ -516,8 +516,6 @@ INPUT /usr/local/texlive/texmf-local/fonts/vf/adobe/MinionPro-Regular-lf-ts1.vf
 INPUT /usr/local/texlive/texmf-local/fonts/tfm/adobe/MinionPro-Regular-lf-ts1--base.tfm
 INPUT /usr/local/texlive/texmf-local/fonts/vf/adobe/MinionPro-Regular-tosf-oml.vf
 INPUT /usr/local/texlive/texmf-local/fonts/tfm/adobe/MinionPro-Regular-tosf-oml--base.tfm
-INPUT /usr/local/texlive/texmf-local/fonts/vf/adobe/MinionPro-Bold-lf-t1.vf
-INPUT /usr/local/texlive/texmf-local/fonts/tfm/adobe/MinionPro-Bold-lf-t1--base.tfm
 INPUT /usr/local/texlive/texmf-local/fonts/tfm/adobe/MyriadPro-Bold-lf-t1.tfm
 INPUT ../data/Al2O3_85_10.txt
 INPUT /usr/local/texlive/texmf-local/fonts/tfm/adobe/MinionPro-It-lf-l1-t1.tfm
@@ -570,6 +568,9 @@ INPUT /usr/local/texlive/texmf-local/fonts/vf/adobe/MinionPro-Regular-lf-l1-t1.v
 INPUT /usr/local/texlive/texmf-local/fonts/tfm/adobe/MinionPro-Regular-lf-l1-t1--base.tfm
 INPUT main.bbl
 INPUT main.bbl
+INPUT /usr/local/texlive/texmf-local/fonts/tfm/adobe/MinionPro-It-lf-t1.tfm
+INPUT /usr/local/texlive/texmf-local/fonts/vf/adobe/MinionPro-It-lf-t1.vf
+INPUT /usr/local/texlive/texmf-local/fonts/tfm/adobe/MinionPro-It-lf-t1--base.tfm
 INPUT main.lof
 INPUT main.lof
 OUTPUT main.lof
