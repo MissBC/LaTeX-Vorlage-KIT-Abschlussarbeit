@@ -31,7 +31,8 @@
 \usepackage[ngerman]{babel} % für deutsche Texte
 \usepackage[ngerman]{translator}
 
-\usepackage{natbib}
+\usepackage[style=chicago-authordate]{biblatex}
+\addbibresource{../literatur.bib}
 
 \usepackage{pgfplots}
 \usepackage{tikz}
@@ -46,8 +47,9 @@
 	list-units = single,
 	range-units = single]{siunitx} % Temperatur \SI{5}{\degreeCelsius}
 	\SendSettingsToPgf
-\usepackage{mhchem}
+\usepackage[version=3]{mhchem}
 \usepackage{chemfig} % chemische Sturkturformeln darstellen http://www.suedraum.de/latex/stammtisch/strukturformeln.pdf
+\usepackage{hpstatement}
 
 \usepackage{listings}
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -65,7 +67,7 @@
 	xleftmargin=0.1\textwidth,
 	xrightmargin=0.1\textwidth,
 	columns=fullflexible,	
-    breakatwhitespace=false,         
+    breakatwhitespace=false,
     breaklines=true,                 
     captionpos=b,                    
     keepspaces=true,                 
@@ -74,8 +76,7 @@
     showspaces=false,                
     showstringspaces=false,
     showtabs=false,
-}
- 
+} 
 \lstset{style=mystyle}
 
 \usepackage{hyperref}
@@ -164,6 +165,8 @@
 	\renewcommand\thetable{\Alph{section}.\arabic{table}}}
 %% --- End of appenix numbering style ---
 
+\pdfstringdefDisableCommands{\let\ce\@firstofone}
+
 %--------------------------------------------------------------------------------
 \begin{document}
 %--------------------------------------------------------------------------------
@@ -204,7 +207,7 @@ Ich versichere hiermit wahrheitsgemäß, die Arbeit selbstständig verfasst und 
 %--------------------------------------------------------------------------------
 \mainmatter
 %--------------------------------------------------------------------------------
-\chapter{Einleitung} % (fold)
+\chapter{Einleitung \ce{H2O} und \ce{CO2}} % (fold)
 \label{cha:einleitung}
 
 Damit Ihr indess erkennt, woher dieser ganze Irrthum gekommen ist, und weshalb man die Lust anklagt und den Schmerz lobet, so will ich Euch Alles eröffnen und auseinander setzen, was jener Begründer der Wahrheit und gleichsam Baumeister des glücklichen Lebens selbst darüber gesagt hat. Niemand, sagt er, verschmähe, oder hasse, oder fliehe die Lust als solche, sondern weil grosse Schmerzen ihr folgen, wenn man nicht mit Vernunft ihr nachzugehen verstehe. Ebenso werde der Schmerz als solcher von Niemand geliebt, gesucht und verlangt, sondern weil mitunter solche Zeiten eintreten, dass man mittelst Arbeiten und Schmerzen eine grosse Lust sich zu verschaften suchen müsse. Um hier gleich bei dem Einfachsten stehen zu bleiben, so würde Niemand von uns anstrengende körperliche Uebungen vornehmen, wenn er nicht einen Vortheil davon erwartete. Wer dürfte aber wohl Den tadeln, der nach einer Lust verlangt, welcher keine Unannehmlichkeit folgt, oder der einem Schmerze ausweicht, aus dem keine Lust hervorgeht? \SIlist{1;2;3}{\metre} \\ \SIrange{1}{10}{\degreeCelsius}
@@ -226,12 +229,17 @@ Damit Ihr indess erkennt, woher dieser ganze Irrthum gekommen ist, und weshalb m
 		Erbicol & \ce{SiSiC} & 0.88 & 10 & 25 & 0.865 & 480\\
 		Letschert & \ce{Silikat} & 0.91 & 10 & 100 & 0.878 & 700\\
 		\bottomrule
-		\multicolumn{7}{l}{${}^*$ Werte aus \citet[][S. 155 und 157]{grosse2011keramische}}
+		\multicolumn{7}{l}{${}^*$ Werte aus \textcite[][S. 155 und 157]{grosse2011keramische}}
 	\end{tabular}
 	\end{center}
 \end{table}
 
-Dagegen tadelt und hasst man mit Recht Den, welcher sich durch die Lockungen einer gegenwärtigen Lust erweichen und verführen lässt, ohne in seiner blinden Begierde zu sehen, welche Schmerzen und Unannehmlichkeiten seiner deshalb warten. Gleiche Schuld treffe Die, welche aus geistiger Schwäche, d.h. um der Arbeit und dem Schmerze zu entgehen, ihre Pflichten verabsäumen. Man kann hier leicht und schnell den richtigen Unterschied treffen; zu einer ruhigen Zeit, wo die Wahl der Entscheidung völlig frei ist und nichts hindert, das zu thun, was den Meisten gefällt, hat man jede Lust zu erfassen und jeden Schmerz abzuhalten; aber zu Zeiten trifft es sich in Folge von schuldigen Pflichten oder von sachlicher Noth, dass man die Lust zurückweisen und Beschwerden nicht von sich weisen darf. Deshalb trifft der Weise dann eine Auswahl, damit er durch Zurückweisung einer Lust dafür eine grössere erlange oder durch Uebernahme gewisser Schmerzen sich grössere erspare.
+Dagegen tadelt und hasst man mit Recht Den, welcher sich durch die Lockungen einer gegenwärtigen Lust erweichen und verführen lässt, ohne in seiner blinden Begierde zu sehen, welche Schmerzen und Unannehmlichkeiten seiner deshalb warten. Gleiche Schuld treffe Die, welche aus geistiger Schwäche, d.h. um der Arbeit und dem Schmerze zu entgehen, ihre Pflichten verabsäumen. Man kann hier leicht und schnell den richtigen Unterschied treffen; zu einer ruhigen Zeit, wo die Wahl der Entscheidung völlig frei ist und nichts hindert, das zu thun, was den Meisten gefällt, hat man jede Lust zu erfassen und jeden Schmerz abzuhalten; aber zu Zeiten trifft es sich in Folge von schuldigen Pflichten oder von sachlicher Noth, dass man die Lust zurückweisen und Beschwerden nicht von sich weisen darf. Deshalb trifft der Weise dann eine Auswahl, damit er durch Zurückweisung einer Lust dafür eine grössere erlange oder durch Übernahme gewisser Schmerzen sich grössere erspare.
+
+% \begin{description}
+% 	\foreach \x in {H225,H315.1} {\item[\hpnumber{\x}] \hpstatement{}}
+% \end{description}
+
 
 \begin{figure}[htbp]
 \begin{center}
@@ -348,8 +356,7 @@ Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie co
 %--------------------------------------------------------------------------------
 %	LITERATURVERZEICHNIS - ANHANG
 %--------------------------------------------------------------------------------
-\bibliographystyle{../chicago-de}
-\bibliography{../literatur}
+\printbibliography
 
 \appendix
 
