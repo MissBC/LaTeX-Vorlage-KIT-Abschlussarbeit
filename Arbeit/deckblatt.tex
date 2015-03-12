@@ -2,21 +2,14 @@
 %	DECKBLATT
 %--------------------------------------------------------------------------------
 \thispagestyle{empty}
-\definecolor{grau}{rgb}{0.85,0.85,0.85} %RGB: 217R 217G 217B
-
-\newcommand{\radius}{5}
-\newcommand{\xone}{-9} % -30 wenn keine Bindung/Lochung vorgesehen ist
-\newcommand{\xtwo}{169}
-\newcommand{\yone}{30}
-\newcommand{\ytwo}{-243} % -259 wenn kein Text in die Fußzeile soll
 
 \begin{tikzpicture}[remember picture,overlay]
 	
-	\fill[color=grau] (current page.south east) rectangle (current page.north west);
-	\fill[color=white] ($ (current page.north west) + (19mm,-5mm) $) -- ($ (current page.north east) - (10mm,5mm) $) arc (90:0:\radius mm) -- ($ (current page.south east) + (-5mm,13mm) $) -- ($ (current page.south west) + (24mm,13mm) $) arc (270:180:\radius mm) -- cycle;
+	\fill[color=kit-black!15] (current page.south east) rectangle (current page.north west);
+	\fill[color=white] ($ (current page.north west) + (19mm,-5mm) $) -- ($ (current page.north east) - (10mm,5mm) $) arc (90:0:5 mm) -- ($ (current page.south east) + (-5mm,13mm) $) -- ($ (current page.south west) + (24mm,13mm) $) arc (270:180:5 mm) -- cycle;
 
-	\node[anchor=north west] at ($ (current page.north west) + (24mm,-10mm) $){ \includegraphics[width=33mm, height=15mm]{../logos/KITLogo_RGB.pdf} };
-	\node[anchor=north east] at ($ (current page.north east) - (10mm,10mm) $){ \includegraphics[height=15mm]{../logos/LVTLogo.pdf} };
+	\node[anchor=north west] at ($ (current page.north west) + (26.5mm,-12.5mm) $){ \includegraphics[height=18mm]{../Logos/kitlogo_de_cmyk.pdf} };
+	\node[anchor=north east] at ($ (current page.north east) - (12.5mm,12.5mm) $){ \includegraphics[height=18mm]{../Logos/LVTLogo.pdf} };
 	
 	\node[text width=0.9\textwidth] at ($ (current page.center) + (14mm,0mm) $){
 		\titlehead{\Large \center Karlsruher Institut für Technologie (KIT)} % Universität, Institut, ...
@@ -25,9 +18,10 @@
 		\subtitle{Untertitel}
 		\author{Autor}
 		% \publishers{Aufgabensteller \\Betreuer}  % Aufgabensteller / Betreuer
-		%\date{} %Datum wird automatisch auf \today gesetzt - für anderes Datum in die {} schreiben
+		%\date{} %Datum wird automatisch auf \today gesetzt - anderes Datum in die {} schreiben
 	\maketitle };
 	
 	\node[anchor=base west] at ($ (current page.south west) + (24mm,7mm) $) {Karlsruher Institut für Technologie (KIT)};
 	\node[anchor=base east] at ($ (current page.south east) + (-10mm,7mm) $) {www.kit.edu};
+	
 \end{tikzpicture}

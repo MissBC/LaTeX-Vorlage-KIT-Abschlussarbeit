@@ -1,6 +1,6 @@
 \documentclass[ %
-	DIV=15, % Parameter für die Satzspiegel-Berechnung
-	BCOR=14mm, % Bindekorrektur 12mm (geeignet für Lochung oder einfache Klebebindung)
+	DIV=14, % Parameter für die Satzspiegel-Berechnung
+	BCOR=20mm, % Bindekorrektur 20mm (geeignet für Lochung oder einfache Klebebindung)
 	parskip=half, % Absätze mit Abstand von einer halben Zeilenhöhe
 	headsepline, % Horizontale Linie zwischen Kopfzeile und Inhalt
 	cleardoublepage=empty, % Vakatseiten ohne Kopf- und Fußzeile
@@ -14,22 +14,26 @@
 \usepackage[utf8]{inputenc} % UTF-8 Zeichen sind möglich
 \usepackage[T1]{fontenc} % utf8-Kompatible Schrifttypen (Type One) erlauben
 
-% --- Auswahl der Schrift-Art. Nur ein Set von Serif und Sans-Serif einbinden, die anderen auskommentieren!
+% --- Auswahl der Schrift-Art. Nur eine Kombination von Serif und Sans-Serif Schriften einbinden, die anderen auskommentieren!
 
 % --- Minion Pro und Myriad Pro (normalerweise nicht vorinstalliert, Anleitung zur Installation im Ordner Dokumentation)
 % \usepackage[lf, minionint, loosequotes]{MinionPro} % läd die Schrift Minion Pro für den Fließtext und Mathe-Modus
 % \usepackage[lf]{MyriadPro} % läd die Schrift Myriad Pro für Überschriften
 
+% --- Charter und Source Sans Pro
+\usepackage[charter]{mathdesign} % läd die Schrift Charter für den Fließtext und Mathe-Modus
+\usepackage[scale=1.02]{sourcesanspro} % läd die Schrift Source Sans Pro für Überschrifen
+
 % --- Libertine und Source Sans Pro
-\usepackage{libertine} % läd die Schrift Libertine für den Fließtext
-\usepackage[scale=.9]{sourcesanspro} % läd die Schrift Source Sans Pro für Überschrifen
-\usepackage[libertine]{newtxmath} % läd die Schrift Libertine für den Mathe-Modus
+% \usepackage{libertine} % läd die Schrift Libertine für den Fließtext
+% \usepackage[scale=.9]{sourcesanspro} % läd die Schrift Source Sans Pro für Überschrifen
+% \usepackage[libertine]{newtxmath} % läd die Schrift Libertine für den Mathe-Modus
 
 % --- Times und Helvetica
 % \usepackage{newtxtext} % läd die Schriften Times für den Fließtext und Helvetica für Überschriften
 % \usepackage{newtxmath} % läd die Schrift Times für den Mathe-Modus
 
-\usepackage[scale=.9]{sourcecodepro} % läd die Schrift Source Code Pro für den Quellcode-Modus
+\usepackage[scale=0.9]{sourcecodepro} % läd die Schrift Source Code Pro für den Quellcode-Modus
 
 \recalctypearea % Optimierung der Seiten-Ränder für die gewählte Schriftart
 
@@ -37,7 +41,7 @@
 \setkomafont{captionlabel}{\normalfont\sffamily\bfseries}
 \setkomafont{pageheadfoot}{\normalfont}
 
-\usepackage{scrpage2} % Kopf- und Fußzeilen einstellen
+\usepackage{scrlayer-scrpage} % Kopf- und Fußzeilen einstellen
 \pagestyle{scrheadings}
 \clearscrheadfoot
 \ohead{\pagemark}
@@ -65,7 +69,8 @@
 \definecolor{kit-black}{cmyk}{0, 0, 0, 1}
 
 \usepackage{tikz} % Zeichnungen (zum Beispiel Schmuckbogen auf dem Deckblatt)
-\usetikzlibrary{backgrounds, calc}
+\usetikzlibrary{calc}
+
 \usepackage{pgfplots} % hübsche Diagramme
 
 \usepackage{booktabs} % hübsche Tabellen
@@ -77,8 +82,10 @@
 	list-units = single,
 	range-units = single]{siunitx} % Beispiel: Temperatur \SI{5}{\degreeCelsius}
 	\SendSettingsToPgf
+	
 \usepackage{mhchem} % chemische Summenformeln und Reaktionsgleichungen
 \usepackage{hpstatement} % H- und P-Sätze
+
 \usepackage{chemfig} % chemische Sturkturformeln darstellen http://www.suedraum.de/latex/stammtisch/strukturformeln.pdf
 
 \usepackage{listings} % für Quellcodes
@@ -86,7 +93,7 @@
 	backgroundcolor=\color{kit-black!2},   
 	commentstyle=\color{kit-black!50},
 	numberstyle=\ttfamily\tiny\color{kit-black!50},
-	keywordstyle=\color{kit-blue},
+	keywordstyle=\bfseries\color{kit-blue},
 	stringstyle=\color{kit-green},
 	basicstyle=\ttfamily\small,
 	xleftmargin=0.1\textwidth,
@@ -94,8 +101,7 @@
 	captionpos=b,
 	numbers=left,
 	numbersep=5pt,
-	upquote
-}
+	upquote }
 \renewcommand\lstlistingname{Quellcode}
 \renewcommand\lstlistlistingname{Quellcodeverzeichnis}
 
@@ -148,7 +154,7 @@
 				scatter src=explicit symbolic,
 				mark=*,
 				smooth]
-				table[header=false,x index=1,y index=0,meta index=3]{../data/#1_#2_#3.txt};
+				table[header=false,x index=1,y index=0,meta index=3]{../Daten/#1_#2_#3.txt};
 			\node[anchor=north west,draw=gray,fill=white] at (rel axis cs:0.05,0.95) {\schwamm{#1}{#2}{#3}};
 			\legend{$u_l \approx \SI{5,7}{\milli\m\per\s}$,$u_l \approx \SI{4,2}{\milli\m\per\s}$,$u_l \approx \SI{2,8}{\milli\m\per\s}$,$u_l \approx \SI{1,4}{\milli\m\per\s}$,trocken}
 		\end{loglogaxis}
